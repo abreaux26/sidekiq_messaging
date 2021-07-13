@@ -13,11 +13,11 @@
 ActiveRecord::Schema.define(version: 2021_07_13_133018) do
 
   create_table "staff_messages", force: :cascade do |t|
-    t.string "staff_id"
-    t.date "date_seen"
-    t.text "message"
-    t.string "from_id"
-    t.integer "reply_key"
+    t.string "recipient_id"
+    t.date "seen_on"
+    t.text "body"
+    t.string "sender_id"
+    t.integer "parent_id"
     t.integer "thread_parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
