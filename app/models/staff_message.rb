@@ -1,0 +1,2 @@
+class StaffMessage < ApplicationRecord
+end

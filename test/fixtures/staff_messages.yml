@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  staff_id: MyString
+  date_seen: 2021-07-13
+  message: MyText
+  from_id: MyString
+  reply_key: 
+  thread_parent_id: 
+
+two:
+  staff_id: MyString
+  date_seen: 2021-07-13
+  message: MyText
+  from_id: MyString
+  reply_key: 
+  thread_parent_id: 
