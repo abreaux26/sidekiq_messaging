@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Staff.create!(staff_id: "BW-00", name: "Ben Watson")
-Staff.create!(staff_id: "AB-00", name: "Angel Breaux")
-Staff.create!(staff_id: "JB-00", name: "Jenny Branham")
+ben = Staff.create!(staff_id: "BW-00", name: "Ben Watson")
+angel = Staff.create!(staff_id: "AB-00", name: "Angel Breaux")
+jenny = Staff.create!(staff_id: "JB-00", name: "Jenny Branham")
+
+jenny_to_ben = StaffMessage.create!(recipient: ben, body: "message", sender: jenny)
+ben_to_jenny = StaffMessage.create!(recipient: jenny, body: "reply to message 1", sender: ben, parent: jenny_to_ben)
+jenny_to_ben_2 = StaffMessage.create!(recipient: ben, body: "another reply", sender: jenny, parent: ben_to_jenny)

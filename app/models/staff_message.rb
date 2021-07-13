@@ -9,12 +9,12 @@ class StaffMessage < ApplicationRecord
 
   belongs_to :parent,
     foreign_key: :parent_id,
-    class_name: "Message",
+    class_name: "StaffMessage",
     optional: true
 
   has_one :response,
     foreign_key: :parent_id,
-    class_name: "Message"
+    class_name: "StaffMessage"
 
   scope :unread, -> { where(seen_on: nil) }
   scope :read, -> { where.not(seen_on: nil) }
