@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 2021_07_13_133018) do
     t.text "body"
     t.bigint "sender_id"
     t.bigint "parent_id"
-    t.bigint "thread_parent_id"
+    t.bigint "thread_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_staff_messages_on_parent_id"
     t.index ["recipient_id"], name: "index_staff_messages_on_recipient_id"
     t.index ["sender_id"], name: "index_staff_messages_on_sender_id"
-    t.index ["thread_parent_id"], name: "index_staff_messages_on_thread_parent_id"
+    t.index ["thread_id"], name: "index_staff_messages_on_thread_id"
   end
 
   create_table "staffs", force: :cascade do |t|
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_133018) do
   end
 
   add_foreign_key "staff_messages", "staff_messages", column: "parent_id"
-  add_foreign_key "staff_messages", "staff_messages", column: "thread_parent_id"
+  add_foreign_key "staff_messages", "staff_messages", column: "thread_id"
   add_foreign_key "staff_messages", "staffs", column: "recipient_id"
   add_foreign_key "staff_messages", "staffs", column: "sender_id"
 end

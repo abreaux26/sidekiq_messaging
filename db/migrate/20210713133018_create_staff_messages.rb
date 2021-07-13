@@ -6,7 +6,7 @@ class CreateStaffMessages < ActiveRecord::Migration[5.2]
       t.text :body
       t.references :sender, foreign_key: {to_table: :staffs}
       t.references :parent, foreign_key: {to_table: :staff_messages}
-      t.references :thread_parent, foreign_key: {to_table: :staff_messages}
+      t.references :thread, foreign_key: {to_table: :staff_messages}
 
       t.timestamps
     end
