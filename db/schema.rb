@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_07_13_133018) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "staff_messages", force: :cascade do |t|
     t.string "recipient_id"
     t.date "seen_on"
