@@ -18,12 +18,12 @@ class StaffMessage < ApplicationRecord
 
   belongs_to :thread,
     foreign_key: :thread_id,
-    class_name: "StaffMessage"
+    class_name: "StaffMessage",
+    optional: true
 
   scope :unread, -> { where(seen_on: nil) }
   scope :read, -> { where.not(seen_on: nil) }
   scope :start_of_thread, -> { where(parent: nil)}
-  scope :end_of_thread, -> { where(response: nil)}
 
   def read?
     seen_on.present? && seen_on <= Date.current

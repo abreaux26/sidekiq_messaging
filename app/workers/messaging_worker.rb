@@ -7,20 +7,15 @@ class MessagingWorker
 
   # def perform(client_id)
   def perform
-
-    ## find all where parent_id is null
     threads = StaffMessage.start_of_thread
-    #for each row
+
     threads.each do |thread|
-      #find response row
       response = thread.response
-    binding.irb
-      until response.response.nil?
-        #set thread id
-        response.thread = thread
+
+      until response.blank?
+        response.thread = thread if response.thread.blank?
         response.save!
 
-        #find next response row
         response = response.response
       end
     end
