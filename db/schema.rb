@@ -16,14 +16,18 @@ ActiveRecord::Schema.define(version: 2021_07_13_133018) do
   enable_extension "plpgsql"
 
   create_table "staff_messages", force: :cascade do |t|
-    t.string "recipient_id"
+    t.bigint "recipient_id"
     t.date "seen_on"
     t.text "body"
-    t.string "sender_id"
-    t.integer "parent_id"
-    t.integer "thread_parent_id"
+    t.bigint "sender_id"
+    t.bigint "parent_id"
+    t.bigint "thread_parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_staff_messages_on_parent_id"
+    t.index ["recipient_id"], name: "index_staff_messages_on_recipient_id"
+    t.index ["sender_id"], name: "index_staff_messages_on_sender_id"
+    t.index ["thread_parent_id"], name: "index_staff_messages_on_thread_parent_id"
   end
 
   create_table "staffs", force: :cascade do |t|
@@ -33,4 +37,8 @@ ActiveRecord::Schema.define(version: 2021_07_13_133018) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "staff_messages", "staff_messages", column: "parent_id"
+  add_foreign_key "staff_messages", "staff_messages", column: "thread_parent_id"
+  add_foreign_key "staff_messages", "staffs", column: "recipient_id"
+  add_foreign_key "staff_messages", "staffs", column: "sender_id"
 end
